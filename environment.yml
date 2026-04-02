@@ -1,0 +1,47 @@
+name: mfa-temoa-py3
+channels:
+    # Put conda-forge first to reduce cross-channel incompatibilities.
+    - conda-forge
+    - defaults
+dependencies:
+    # Core model/runtime
+    - python=3.12
+    - pyomo=6.7
+    - xlwt
+    - ipython
+    - matplotlib
+    # Pyomo in this stack still expects np.float_ behavior removed in NumPy 2.x.
+    - numpy<2
+    # Keep pandas 2.x to avoid pyam export API mismatch seen with pandas 3.x.
+    - pandas<3
+    - scipy
+    - joblib
+    # SALib >=1.5 enforces numpy>=2, conflicting with current Pyomo constraints.
+    - salib<1.5
+    - pydoe
+    - pyutilib
+    - python-graphviz
+    - ipykernel
+    - jupyter
+    - seaborn
+    - tabulate
+    - xlsxwriter
+    - plotly
+    # Use explicit package name and a version band tested with pandas 2.x.
+    - pyam-iamc>=3.3,<4
+    # gravis imports pkg_resources; setuptools 81+ removes it.
+    - setuptools<81
+    # cbc solver cannot be installed via Conda on Windows.
+    - coincbc
+    - pytest
+    - deprecated
+    - openpyxl
+    - networkx
+    - gravis
+
+    # Documentation tooling
+    - sphinx
+    - sphinx_rtd_theme
+    - sphinxcontrib-htmlhelp
+    - sphinxcontrib-serializinghtml
+    - sphinxcontrib-bibtex
