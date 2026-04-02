@@ -1,23 +1,23 @@
 # MFA-Temoa Quickstart
 
-This folder provides a stable Conda environment definition for running the Temoa sample model in this workspace.
+This repository provides a stable Conda environment and onboarding steps for running Temoa from the submodule at `2_Temoa_submodule/`.
 
-## 1. Create and Activate Environment
+## 1. Clone and Pull Submodules
 
-Run from this folder:
+If you cloned this repo without `--recurse-submodules`, run:
 
 ```bash
-cd /Users/jerrysong/Study_PKU/MFA_Workspace/ODYM_Application/summer-school/MFA-Temoa
-conda env create -f environment.yml
-conda activate temoa-py3
+cd MFA-Temoa
+git submodule update --init --recursive
 ```
 
-## 2. Switch to the Temoa Project Root
+## 2. Create and Activate Environment
 
-`main.py` is in `summer-school/temoa`, not in `MFA-Temoa`.
+Run from the `MFA-Temoa` root:
 
 ```bash
-cd /Users/jerrysong/Study_PKU/MFA_Workspace/ODYM_Application/summer-school/temoa
+conda env create -f environment.yml
+conda activate temoa-py3
 ```
 
 ## 3. Initialize the Sample Database
@@ -25,16 +25,16 @@ cd /Users/jerrysong/Study_PKU/MFA_Workspace/ODYM_Application/summer-school/temoa
 Before the first run, build `utopia.sqlite` from `utopia.sql`:
 
 ```bash
-sqlite3 ./data_files/example_dbs/utopia.sqlite < ./data_files/example_dbs/utopia.sql
+sqlite3 ./2_Temoa_submodule/data_files/example_dbs/utopia.sqlite < ./2_Temoa_submodule/data_files/example_dbs/utopia.sql
 ```
 
 ## 4. Run the Sample Configuration
 
 ```bash
-python main.py --config data_files/my_configs/config_sample.toml
+python ./2_Temoa_submodule/main.py --config ./2_Temoa_submodule/data_files/my_configs/config_sample.toml
 ```
 
-If the run succeeds, Temoa will create a timestamped output folder under `temoa/output_files/`.
+If the run succeeds, Temoa will create a timestamped output folder under `2_Temoa_submodule/output_files/`.
 
 ## What This Environment Pins and Why
 

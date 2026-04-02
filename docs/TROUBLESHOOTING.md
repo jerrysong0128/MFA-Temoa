@@ -51,7 +51,7 @@ conda install -n temoa-py3 "pandas<3" "pyam-iamc>=3.3,<4"
 The sample config points to `utopia.sqlite`, but that file does not exist until you build it from `utopia.sql`.
 
 ### Fix
-From `summer-school/temoa`:
+From `MFA-Temoa/2_Temoa_submodule`:
 
 ```bash
 sqlite3 ./data_files/example_dbs/utopia.sqlite < ./data_files/example_dbs/utopia.sql
@@ -73,12 +73,12 @@ python main.py --config data_files/my_configs/config_sample.toml
 ## 6) `python: can't open file '.../MFA-Temoa/main.py': [Errno 2] No such file or directory`
 
 ### Cause
-The command was run from the wrong directory. `main.py` is in `summer-school/temoa`.
+The command was run from the wrong directory. `main.py` is in `MFA-Temoa/2_Temoa_submodule`.
 
 ### Fix
 
 ```bash
-cd /Users/jerrysong/Study_PKU/MFA_Workspace/ODYM_Application/summer-school/temoa
+cd 2_Temoa_submodule
 python main.py --config data_files/my_configs/config_sample.toml
 ```
 
