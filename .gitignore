@@ -1,0 +1,8 @@
+__pycache__/
+.history/
+archive/
+*.csv
+
+# Keep pre-run demand scenario outputs under version control
+!data/1-mfa/pre-run-demand/
+!data/1-mfa/pre-run-demand/*.csv

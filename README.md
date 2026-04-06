@@ -17,7 +17,7 @@ Run from the `MFA-Temoa` root:
 
 ```bash
 conda env create -f environment.yml
-conda activate temoa-py3
+conda activate mfa-temoa-py3
 ```
 
 ## 3. Initialize the Sample Database
