@@ -28,7 +28,7 @@ def GloBUS_cement_analysis(
     this_file = Path(__file__).resolve()
     repo_root = this_file.parents[2]
     dir_path_GloBUS = repo_root / "1_GloBUS_submodule"
-    output_dir = repo_root / "data" / "1-mfa"
+    output_dir = repo_root / "data" / "1_mfa"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     old_cwd = Path.cwd()
