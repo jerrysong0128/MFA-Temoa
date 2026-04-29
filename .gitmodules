@@ -1,6 +1,3 @@
 [submodule "1_GloBUS_submodule"]
 	path = 1_GloBUS_submodule
 	url = https://github.com/jerrysong0128/GloBUS_Tutorials
-[submodule "2_Temoa_submodule"]
-	path = 2_Temoa_submodule
-	url = https://github.com/TemoaProject/temoa
