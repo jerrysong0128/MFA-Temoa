@@ -1,50 +1,45 @@
-# MFA-Temoa Quickstart
+# MFA-Temoa Quick Start
 
-This repository provides a stable Conda environment and onboarding steps for running Temoa from the submodule at `2_Temoa_submodule/`.
+This repository supports two installation options.
 
-## 1. Clone and Pull Submodules
+## Option 1: Python 3.12+ Already Installed
 
-If you cloned this repo without `--recurse-submodules`, run:
+If your current Python is `>=3.12`, install from PyPI in a virtual environment at the project root (`MFA-Temoa`):
 
 ```bash
-cd MFA-Temoa
-git submodule update --init --recursive
+python -m venv .venv
+# Remove existing virtual environment if it exists
+rm -rf .venv  
+# Deactivate any active virtual environment
+deactivate 2>/dev/null || true
+
+# On Linux/macOS
+source .venv/bin/activate
+
+# On Windows
+.venv\Scripts\activate
+pip install temoa
 ```
 
-## 2. Create and Activate Environment
+## Option 2: No Suitable Python Installed
 
-Run from the `MFA-Temoa` root:
+If you do not have Python `>=3.12`, create a Conda environment from `environment.yml` (it installs `temoa` automatically):
 
 ```bash
 conda env create -f environment.yml
-conda activate mfa-temoa-py3
+conda activate mfa-temoa
 ```
 
-## 3. Initialize the Sample Database
+## Get Started in 30 Seconds (Both Options)
 
-Before the first run, build `utopia.sqlite` from `utopia.sql`:
+In a virtual environment with `temoa` installed, run:
 
 ```bash
-sqlite3 ./2_Temoa_submodule/data_files/example_dbs/utopia.sqlite < ./2_Temoa_submodule/data_files/example_dbs/utopia.sql
+# Create tutorial files in the current directory
+# Creates tutorial_config.toml and tutorial_database.sqlite
+cd ./data/2_temoa/20_tutorial
+temoa tutorial
+
+# Run the model
+temoa run tutorial_config.toml
 ```
-
-## 4. Run the Sample Configuration
-
-```bash
-python ./2_Temoa_submodule/main.py --config ./2_Temoa_submodule/data_files/my_configs/config_sample.toml
-```
-
-If the run succeeds, Temoa will create a timestamped output folder under `2_Temoa_submodule/output_files/`.
-
-## What This Environment Pins and Why
-
-This Conda setup is intentionally pinned to avoid the exact incompatibilities encountered during first-time setup on macOS arm64 with Python 3.12:
-`numpy<2`, `setuptools<81`, `pandas<3`, `pyam-iamc>=3.3,<4`, and `salib<1.5`.
-
-These pins keep the current Temoa + Pyomo + Gravis + pyam workflow stable (including Excel export) and prevent known import/runtime breakages caused by newer upstream package changes.
-
-## Troubleshooting
-
-For known errors, causes, and exact fix commands, see:
-
-- [TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md)
