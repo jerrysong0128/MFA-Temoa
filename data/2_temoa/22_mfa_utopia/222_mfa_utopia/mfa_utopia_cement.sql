@@ -177,6 +177,7 @@ INSERT INTO "capacity_to_activity" VALUES('utopia','SRE',1.0,'PJ / (GW * year)',
 INSERT INTO "capacity_to_activity" VALUES('utopia','TXD',1.0,'PJ / (GW * year)','');
 INSERT INTO "capacity_to_activity" VALUES('utopia','TXE',1.0,'PJ / (GW * year)','');
 INSERT INTO "capacity_to_activity" VALUES('utopia','TXG',1.0,'PJ / (GW * year)','');
+INSERT INTO "capacity_to_activity" VALUES('utopia','CEM_PROD',1.0,'Mt / (GW * year)','');
 
 CREATE TABLE commodity
 (
@@ -201,6 +202,8 @@ INSERT INTO "commodity" VALUES('nox','e','#NOX emissions','Mt');
 INSERT INTO "commodity" VALUES('RH','d','# residential heating','PJ');
 INSERT INTO "commodity" VALUES('RL','d','# residential lighting','PJ');
 INSERT INTO "commodity" VALUES('TX','d','# transportation','PJ');
+INSERT INTO "commodity" VALUES('CEM','d','# cement demand','Mt');
+INSERT INTO "commodity" VALUES('co2_cem','e','# cement process CO2 emissions','Mt');
 
 CREATE TABLE commodity_type
 (
@@ -259,6 +262,7 @@ CREATE TABLE cost_fixed
     notes   TEXT,
     PRIMARY KEY (region, period, tech, vintage)
 );
+INSERT INTO "cost_fixed" VALUES('utopia',2020,'CEM_PROD',2020,22.0,'Mdollar / (Mt^2 / GW / year)','estimated cement fixed O&M');
 INSERT INTO "cost_fixed" VALUES('utopia',2020,'E01',2020,100.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2020,'E21',2020,500.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2020,'E31',2020,75.0,'Mdollar / (PJ^2 / GW / year)','');
@@ -278,6 +282,7 @@ INSERT INTO "cost_fixed" VALUES('utopia',2030,'RHO',2020,1.0,'Mdollar / (PJ^2 / 
 INSERT INTO "cost_fixed" VALUES('utopia',2030,'TXD',2020,52.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2030,'TXE',2020,80.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2030,'TXG',2020,48.0,'Mdollar / (PJ^2 / GW / year)','');
+INSERT INTO "cost_fixed" VALUES('utopia',2030,'CEM_PROD',2030,22.0,'Mdollar / (Mt^2 / GW / year)','estimated cement fixed O&M');
 INSERT INTO "cost_fixed" VALUES('utopia',2030,'E01',2030,100.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2030,'E21',2030,500.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2030,'E31',2030,75.0,'Mdollar / (PJ^2 / GW / year)','');
@@ -303,6 +308,7 @@ INSERT INTO "cost_fixed" VALUES('utopia',2040,'RHO',2030,1.0,'Mdollar / (PJ^2 / 
 INSERT INTO "cost_fixed" VALUES('utopia',2040,'TXD',2030,52.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2040,'TXE',2030,80.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2040,'TXG',2030,48.0,'Mdollar / (PJ^2 / GW / year)','');
+INSERT INTO "cost_fixed" VALUES('utopia',2040,'CEM_PROD',2040,22.0,'Mdollar / (Mt^2 / GW / year)','estimated cement fixed O&M');
 INSERT INTO "cost_fixed" VALUES('utopia',2040,'E01',2040,100.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2040,'E21',2040,500.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2040,'E31',2040,75.0,'Mdollar / (PJ^2 / GW / year)','');
@@ -333,6 +339,7 @@ INSERT INTO "cost_fixed" VALUES('utopia',2050,'RHO',2040,1.0,'Mdollar / (PJ^2 / 
 INSERT INTO "cost_fixed" VALUES('utopia',2050,'TXD',2040,52.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2050,'TXE',2040,80.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2050,'TXG',2040,48.0,'Mdollar / (PJ^2 / GW / year)','');
+INSERT INTO "cost_fixed" VALUES('utopia',2050,'CEM_PROD',2050,22.0,'Mdollar / (Mt^2 / GW / year)','estimated cement fixed O&M');
 INSERT INTO "cost_fixed" VALUES('utopia',2050,'E01',2050,100.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2050,'E21',2050,500.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2050,'E31',2050,75.0,'Mdollar / (PJ^2 / GW / year)','');
@@ -365,6 +372,7 @@ INSERT INTO "cost_fixed" VALUES('utopia',2060,'RHO',2050,1.0,'Mdollar / (PJ^2 / 
 INSERT INTO "cost_fixed" VALUES('utopia',2060,'TXD',2050,52.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2060,'TXE',2050,80.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2060,'TXG',2050,48.0,'Mdollar / (PJ^2 / GW / year)','');
+INSERT INTO "cost_fixed" VALUES('utopia',2060,'CEM_PROD',2060,22.0,'Mdollar / (Mt^2 / GW / year)','estimated cement fixed O&M');
 INSERT INTO "cost_fixed" VALUES('utopia',2060,'E01',2060,100.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2060,'E21',2060,500.0,'Mdollar / (PJ^2 / GW / year)','');
 INSERT INTO "cost_fixed" VALUES('utopia',2060,'E31',2060,75.0,'Mdollar / (PJ^2 / GW / year)','');
@@ -388,6 +396,7 @@ CREATE TABLE cost_invest
     notes   TEXT,
     PRIMARY KEY (region, tech, vintage)
 );
+INSERT INTO "cost_invest" VALUES('utopia','CEM_PROD',2020,850.0,'Mdollar / (Mt^2 / GW)','estimated cement process investment');
 INSERT INTO "cost_invest" VALUES('utopia','E01',2020,1200.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E21',2020,5000.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E31',2020,3000.0,'Mdollar / (PJ^2 / GW)','');
@@ -399,6 +408,7 @@ INSERT INTO "cost_invest" VALUES('utopia','SRE',2020,100.0,'Mdollar / (PJ^2 / GW
 INSERT INTO "cost_invest" VALUES('utopia','TXD',2020,1044.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXE',2020,1500.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXG',2020,1044.0,'Mdollar / (PJ^2 / GW)','');
+INSERT INTO "cost_invest" VALUES('utopia','CEM_PROD',2030,850.0,'Mdollar / (Mt^2 / GW)','estimated cement process investment');
 INSERT INTO "cost_invest" VALUES('utopia','E01',2030,1200.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E21',2030,5000.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E31',2030,3000.0,'Mdollar / (PJ^2 / GW)','');
@@ -410,6 +420,7 @@ INSERT INTO "cost_invest" VALUES('utopia','SRE',2030,100.0,'Mdollar / (PJ^2 / GW
 INSERT INTO "cost_invest" VALUES('utopia','TXD',2030,1044.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXE',2030,1500.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXG',2030,1044.0,'Mdollar / (PJ^2 / GW)','');
+INSERT INTO "cost_invest" VALUES('utopia','CEM_PROD',2040,850.0,'Mdollar / (Mt^2 / GW)','estimated cement process investment');
 INSERT INTO "cost_invest" VALUES('utopia','E01',2040,1200.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E21',2040,5000.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E31',2040,3000.0,'Mdollar / (PJ^2 / GW)','');
@@ -421,6 +432,7 @@ INSERT INTO "cost_invest" VALUES('utopia','SRE',2040,100.0,'Mdollar / (PJ^2 / GW
 INSERT INTO "cost_invest" VALUES('utopia','TXD',2040,1044.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXE',2040,1500.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXG',2040,1044.0,'Mdollar / (PJ^2 / GW)','');
+INSERT INTO "cost_invest" VALUES('utopia','CEM_PROD',2050,850.0,'Mdollar / (Mt^2 / GW)','estimated cement process investment');
 INSERT INTO "cost_invest" VALUES('utopia','E01',2050,1200.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E21',2050,5000.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E31',2050,3000.0,'Mdollar / (PJ^2 / GW)','');
@@ -432,6 +444,7 @@ INSERT INTO "cost_invest" VALUES('utopia','SRE',2050,100.0,'Mdollar / (PJ^2 / GW
 INSERT INTO "cost_invest" VALUES('utopia','TXD',2050,1044.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXE',2050,1500.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','TXG',2050,1044.0,'Mdollar / (PJ^2 / GW)','');
+INSERT INTO "cost_invest" VALUES('utopia','CEM_PROD',2060,850.0,'Mdollar / (Mt^2 / GW)','estimated cement process investment');
 INSERT INTO "cost_invest" VALUES('utopia','E01',2060,1200.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E21',2060,5000.0,'Mdollar / (PJ^2 / GW)','');
 INSERT INTO "cost_invest" VALUES('utopia','E31',2060,3000.0,'Mdollar / (PJ^2 / GW)','');
@@ -458,6 +471,7 @@ CREATE TABLE cost_variable
     notes   TEXT,
     PRIMARY KEY (region, period, tech, vintage)
 );
+INSERT INTO "cost_variable" VALUES('utopia',2020,'CEM_PROD',2020,5.0,'Mdollar / (Mt)','estimated cement variable O&M');
 INSERT INTO "cost_variable" VALUES('utopia',2020,'E01',2020,0.3,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2020,'E21',2020,1.5,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2020,'E70',2020,0.4,'Mdollar / (PJ)','');
@@ -476,6 +490,7 @@ INSERT INTO "cost_variable" VALUES('utopia',2030,'IMPHCO1',2020,2.0,'Mdollar / (
 INSERT INTO "cost_variable" VALUES('utopia',2030,'IMPOIL1',2020,8.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2030,'IMPURN1',2020,2.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2030,'SRE',2020,10.0,'Mdollar / (PJ)','');
+INSERT INTO "cost_variable" VALUES('utopia',2030,'CEM_PROD',2030,5.0,'Mdollar / (Mt)','estimated cement variable O&M');
 INSERT INTO "cost_variable" VALUES('utopia',2030,'E01',2030,0.3,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2030,'E21',2030,1.5,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2030,'E70',2030,0.4,'Mdollar / (PJ)','');
@@ -503,6 +518,7 @@ INSERT INTO "cost_variable" VALUES('utopia',2040,'IMPHCO1',2030,2.0,'Mdollar / (
 INSERT INTO "cost_variable" VALUES('utopia',2040,'IMPOIL1',2030,8.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2040,'IMPURN1',2030,2.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2040,'SRE',2030,10.0,'Mdollar / (PJ)','');
+INSERT INTO "cost_variable" VALUES('utopia',2040,'CEM_PROD',2040,5.0,'Mdollar / (Mt)','estimated cement variable O&M');
 INSERT INTO "cost_variable" VALUES('utopia',2040,'E01',2040,0.3,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2040,'E21',2040,1.5,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2040,'E70',2040,0.4,'Mdollar / (PJ)','');
@@ -539,6 +555,7 @@ INSERT INTO "cost_variable" VALUES('utopia',2050,'IMPHCO1',2040,2.0,'Mdollar / (
 INSERT INTO "cost_variable" VALUES('utopia',2050,'IMPOIL1',2040,8.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2050,'IMPURN1',2040,2.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2050,'SRE',2040,10.0,'Mdollar / (PJ)','');
+INSERT INTO "cost_variable" VALUES('utopia',2050,'CEM_PROD',2050,5.0,'Mdollar / (Mt)','estimated cement variable O&M');
 INSERT INTO "cost_variable" VALUES('utopia',2050,'E01',2050,0.3,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2050,'E21',2050,1.5,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2050,'E70',2050,0.4,'Mdollar / (PJ)','');
@@ -581,6 +598,7 @@ INSERT INTO "cost_variable" VALUES('utopia',2060,'IMPHCO1',2050,2.0,'Mdollar / (
 INSERT INTO "cost_variable" VALUES('utopia',2060,'IMPOIL1',2050,8.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2060,'IMPURN1',2050,2.0,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2060,'SRE',2050,10.0,'Mdollar / (PJ)','');
+INSERT INTO "cost_variable" VALUES('utopia',2060,'CEM_PROD',2060,5.0,'Mdollar / (Mt)','estimated cement variable O&M');
 INSERT INTO "cost_variable" VALUES('utopia',2060,'E01',2060,0.3,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2060,'E21',2060,1.5,'Mdollar / (PJ)','');
 INSERT INTO "cost_variable" VALUES('utopia',2060,'E70',2060,0.4,'Mdollar / (PJ)','');
@@ -603,18 +621,23 @@ CREATE TABLE demand
     notes     TEXT,
     PRIMARY KEY (region, period, commodity)
 );
+INSERT INTO "demand" VALUES('utopia',2020,'CEM',5.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2020,'RH',38.7,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2020,'RL',8.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2020,'TX',7.982,'PJ','');
+INSERT INTO "demand" VALUES('utopia',2030,'CEM',6.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2030,'RH',43.2,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2030,'RL',9.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2030,'TX',8.909,'PJ','');
+INSERT INTO "demand" VALUES('utopia',2040,'CEM',7.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2040,'RH',47.7,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2040,'RL',10.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2040,'TX',9.836,'PJ','');
+INSERT INTO "demand" VALUES('utopia',2050,'CEM',8.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2050,'RH',52.2,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2050,'RL',11.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2050,'TX',10.763,'PJ','');
+INSERT INTO "demand" VALUES('utopia',2060,'CEM',9.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2060,'RH',56.7,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2060,'RL',12.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2060,'TX',11.69,'PJ','');
@@ -635,64 +658,94 @@ CREATE TABLE demand_specific_distribution
     PRIMARY KEY (region, period, season, tod, demand_name),
     CHECK (dsd >= 0 AND dsd <= 1)
 );
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'inter','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'inter','day','RH',0.12,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'inter','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'inter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'inter','night','RH',0.06,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'inter','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'summer','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'summer','day','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'summer','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'summer','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'summer','night','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'summer','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'winter','day','CEM',0.5,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'winter','day','RH',0.4133,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'winter','day','RL',0.5,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'winter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'winter','night','RH',0.2067,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2020,'winter','night','RL',0.1,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'inter','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'inter','day','RH',0.12,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'inter','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'inter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'inter','night','RH',0.06,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'inter','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'summer','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'summer','day','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'summer','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'summer','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'summer','night','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'summer','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'winter','day','CEM',0.5,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'winter','day','RH',0.4133,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'winter','day','RL',0.5,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'winter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'winter','night','RH',0.2067,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2030,'winter','night','RL',0.1,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'inter','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'inter','day','RH',0.12,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'inter','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'inter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'inter','night','RH',0.06,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'inter','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'summer','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'summer','day','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'summer','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'summer','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'summer','night','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'summer','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'winter','day','CEM',0.5,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'winter','day','RH',0.4133,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'winter','day','RL',0.5,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'winter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'winter','night','RH',0.2067,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2040,'winter','night','RL',0.1,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'inter','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'inter','day','RH',0.12,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'inter','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'inter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'inter','night','RH',0.06,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'inter','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'summer','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'summer','day','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'summer','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'summer','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'summer','night','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'summer','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'winter','day','CEM',0.5,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'winter','day','RH',0.4133,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'winter','day','RL',0.5,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'winter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'winter','night','RH',0.2067,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2050,'winter','night','RL',0.1,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'inter','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'inter','day','RH',0.12,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'inter','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'inter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'inter','night','RH',0.06,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'inter','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'summer','day','CEM',0.25,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'summer','day','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'summer','day','RL',0.15,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'summer','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'summer','night','RH',0.1,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'summer','night','RL',0.05,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'winter','day','CEM',0.5,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'winter','day','RH',0.4133,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'winter','day','RL',0.5,'');
+INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'winter','night','CEM',0.0,'daytime-only CEM demand');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'winter','night','RH',0.2067,'');
 INSERT INTO "demand_specific_distribution" VALUES('utopia',2060,'winter','night','RL',0.1,'');
 
@@ -716,12 +769,14 @@ CREATE TABLE efficiency
 INSERT INTO "efficiency" VALUES('utopia','DSL','E70',2020,'ELC',0.294,'PJ / (PJ)','# 1/3.4');
 INSERT INTO "efficiency" VALUES('utopia','DSL','RHO',2020,'RH',0.7,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','DSL','TXD',2020,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2020,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','ELC','E51',2020,'ELC',0.72,'PJ / (PJ)','# 1/1.3889');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RHE',2020,'RH',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RL1',2020,'RL',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','TXE',2020,'TX',0.827,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','FEQ','E21',2020,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','GSL','TXG',2020,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2020,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','HCO','E01',2020,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','HYD','E31',2020,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','OIL','SRE',2020,'DSL',1.0,'PJ / (PJ)','# direct translation from PRC_INP2, PRC_OUT');
@@ -736,15 +791,23 @@ INSERT INTO "efficiency" VALUES('utopia','ethos','IMPOIL1',2020,'OIL',1.0,'PJ / 
 INSERT INTO "efficiency" VALUES('utopia','ethos','IMPURN1',2020,'URN',1.0,'PJ / (PJ)','');
 INSERT INTO "efficiency" VALUES('utopia','ELC','E51',1980,'ELC',0.72,'PJ / (PJ)','# keep existing-cap E51 alive into future');
 INSERT INTO "efficiency" VALUES('utopia','HYD','E31',1980,'ELC',0.32,'PJ / (PJ)','# keep existing-cap E31 alive into future');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',1990,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',1990,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2000,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2000,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2010,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2010,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','DSL','E70',2030,'ELC',0.294,'PJ / (PJ)','# 1/3.4');
 INSERT INTO "efficiency" VALUES('utopia','DSL','RHO',2030,'RH',0.7,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','DSL','TXD',2030,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2030,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','ELC','E51',2030,'ELC',0.72,'PJ / (PJ)','# 1/1.3889');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RHE',2030,'RH',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RL1',2030,'RL',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','TXE',2030,'TX',0.827,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','FEQ','E21',2030,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','GSL','TXG',2030,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2030,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','HCO','E01',2030,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','HYD','E31',2030,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','OIL','SRE',2030,'DSL',1.0,'PJ / (PJ)','# direct translation from PRC_INP2, PRC_OUT');
@@ -760,12 +823,14 @@ INSERT INTO "efficiency" VALUES('utopia','ethos','IMPURN1',2030,'URN',1.0,'PJ / 
 INSERT INTO "efficiency" VALUES('utopia','DSL','E70',2040,'ELC',0.294,'PJ / (PJ)','# 1/3.4');
 INSERT INTO "efficiency" VALUES('utopia','DSL','RHO',2040,'RH',0.7,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','DSL','TXD',2040,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2040,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','ELC','E51',2040,'ELC',0.72,'PJ / (PJ)','# 1/1.3889');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RHE',2040,'RH',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RL1',2040,'RL',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','TXE',2040,'TX',0.827,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','FEQ','E21',2040,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','GSL','TXG',2040,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2040,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','HCO','E01',2040,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','HYD','E31',2040,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','OIL','SRE',2040,'DSL',1.0,'PJ / (PJ)','# direct translation from PRC_INP2, PRC_OUT');
@@ -781,12 +846,14 @@ INSERT INTO "efficiency" VALUES('utopia','ethos','IMPURN1',2040,'URN',1.0,'PJ / 
 INSERT INTO "efficiency" VALUES('utopia','DSL','E70',2050,'ELC',0.294,'PJ / (PJ)','# 1/3.4');
 INSERT INTO "efficiency" VALUES('utopia','DSL','RHO',2050,'RH',0.7,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','DSL','TXD',2050,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2050,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','ELC','E51',2050,'ELC',0.72,'PJ / (PJ)','# 1/1.3889');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RHE',2050,'RH',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RL1',2050,'RL',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','TXE',2050,'TX',0.827,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','FEQ','E21',2050,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','GSL','TXG',2050,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2050,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','HCO','E01',2050,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','HYD','E31',2050,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','OIL','SRE',2050,'DSL',1.0,'PJ / (PJ)','# direct translation from PRC_INP2, PRC_OUT');
@@ -802,12 +869,14 @@ INSERT INTO "efficiency" VALUES('utopia','ethos','IMPURN1',2050,'URN',1.0,'PJ / 
 INSERT INTO "efficiency" VALUES('utopia','DSL','E70',2060,'ELC',0.294,'PJ / (PJ)','# 1/3.4');
 INSERT INTO "efficiency" VALUES('utopia','DSL','RHO',2060,'RH',0.7,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','DSL','TXD',2060,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','ELC','CEM_PROD',2060,'CEM',2.5,'Mt / (PJ)','1 Mt cement requires 0.4 PJ electricity input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','ELC','E51',2060,'ELC',0.72,'PJ / (PJ)','# 1/1.3889');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RHE',2060,'RH',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','RL1',2060,'RL',1.0,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','ELC','TXE',2060,'TX',0.827,'PJ / (PJ)','# direct translation from DMD_EFF');
 INSERT INTO "efficiency" VALUES('utopia','FEQ','E21',2060,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','GSL','TXG',2060,'TX',0.231,'PJ / (PJ)','# direct translation from DMD_EFF');
+INSERT INTO "efficiency" VALUES('utopia','HCO','CEM_PROD',2060,'CEM',0.333333,'Mt / (PJ)','1 Mt cement requires 3.0 PJ coal input (reciprocal form)');
 INSERT INTO "efficiency" VALUES('utopia','HCO','E01',2060,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','HYD','E31',2060,'ELC',0.32,'PJ / (PJ)','# 1/3.125');
 INSERT INTO "efficiency" VALUES('utopia','OIL','SRE',2060,'DSL',1.0,'PJ / (PJ)','# direct translation from PRC_INP2, PRC_OUT');
@@ -864,30 +933,35 @@ INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPDSL1',2020,'DS
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPGSL1',2020,'GSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPHCO1',2020,'HCO',0.089,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPOIL1',2020,'OIL',0.075,'Mt / (PJ)','');
+INSERT INTO "emission_activity" VALUES('utopia','co2_cem','HCO','CEM_PROD',2020,'CEM',0.3,'Mt / (Mt)','dedicated cement CO2 stream');
 INSERT INTO "emission_activity" VALUES('utopia','nox','DSL','TXD',2020,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','nox','GSL','TXG',2020,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPDSL1',2030,'DSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPGSL1',2030,'GSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPHCO1',2030,'HCO',0.089,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPOIL1',2030,'OIL',0.075,'Mt / (PJ)','');
+INSERT INTO "emission_activity" VALUES('utopia','co2_cem','HCO','CEM_PROD',2030,'CEM',0.30,'Mt / (Mt)','dedicated cement CO2 stream');
 INSERT INTO "emission_activity" VALUES('utopia','nox','DSL','TXD',2030,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','nox','GSL','TXG',2030,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPDSL1',2040,'DSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPGSL1',2040,'GSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPHCO1',2040,'HCO',0.089,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPOIL1',2040,'OIL',0.075,'Mt / (PJ)','');
+INSERT INTO "emission_activity" VALUES('utopia','co2_cem','HCO','CEM_PROD',2040,'CEM',0.30,'Mt / (Mt)','dedicated cement CO2 stream');
 INSERT INTO "emission_activity" VALUES('utopia','nox','DSL','TXD',2040,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','nox','GSL','TXG',2040,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPDSL1',2050,'DSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPGSL1',2050,'GSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPHCO1',2050,'HCO',0.089,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPOIL1',2050,'OIL',0.075,'Mt / (PJ)','');
+INSERT INTO "emission_activity" VALUES('utopia','co2_cem','HCO','CEM_PROD',2050,'CEM',0.30,'Mt / (Mt)','dedicated cement CO2 stream');
 INSERT INTO "emission_activity" VALUES('utopia','nox','DSL','TXD',2050,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','nox','GSL','TXG',2050,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPDSL1',2060,'DSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPGSL1',2060,'GSL',0.075,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPHCO1',2060,'HCO',0.089,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','co2','ethos','IMPOIL1',2060,'OIL',0.075,'Mt / (PJ)','');
+INSERT INTO "emission_activity" VALUES('utopia','co2_cem','HCO','CEM_PROD',2060,'CEM',0.30,'Mt / (Mt)','dedicated cement CO2 stream');
 INSERT INTO "emission_activity" VALUES('utopia','nox','DSL','TXD',2060,'TX',1.0,'Mt / (PJ)','');
 INSERT INTO "emission_activity" VALUES('utopia','nox','GSL','TXG',2060,'TX',1.0,'Mt / (PJ)','');
 
@@ -963,6 +1037,9 @@ INSERT INTO "existing_capacity" VALUES('utopia','RHO',1980,13.5,'GW','');
 INSERT INTO "existing_capacity" VALUES('utopia','RL1',1980,5.6,'GW','');
 INSERT INTO "existing_capacity" VALUES('utopia','TXD',1980,0.4,'GW','');
 INSERT INTO "existing_capacity" VALUES('utopia','TXG',1980,1.5,'GW','');
+INSERT INTO "existing_capacity" VALUES('utopia','CEM_PROD',1990,0.02,'GW','small historical cement capacity');
+INSERT INTO "existing_capacity" VALUES('utopia','CEM_PROD',2000,0.03,'GW','small historical cement capacity');
+INSERT INTO "existing_capacity" VALUES('utopia','CEM_PROD',2010,0.05,'GW','small historical cement capacity');
 
 CREATE TABLE lifetime_process
 (
@@ -1019,6 +1096,7 @@ INSERT INTO "lifetime_tech" VALUES('utopia','SRE',50.0,'year','');
 INSERT INTO "lifetime_tech" VALUES('utopia','TXD',15.0,'year','');
 INSERT INTO "lifetime_tech" VALUES('utopia','TXE',15.0,'year','');
 INSERT INTO "lifetime_tech" VALUES('utopia','TXG',15.0,'year','');
+INSERT INTO "lifetime_tech" VALUES('utopia','CEM_PROD',10.0,'year','');
 
 CREATE TABLE limit_activity
 (
@@ -1771,6 +1849,7 @@ INSERT INTO "technology" VALUES('SRE','p','supply','petroleum','',0,0,0,0,0,0,0,
 INSERT INTO "technology" VALUES('TXD','p','transport','petroleum','',0,0,0,0,0,0,0,0,' diesel powered vehicles');
 INSERT INTO "technology" VALUES('TXE','p','transport','electric','',0,0,0,0,0,0,0,0,' electric powered vehicles');
 INSERT INTO "technology" VALUES('TXG','p','transport','petroleum','',0,0,0,0,0,0,0,0,' gasoline powered vehicles');
+INSERT INTO "technology" VALUES('CEM_PROD','p','industrial','cement','',0,0,0,0,0,0,0,0,' cement production technology (coal + electricity input)');
 
 CREATE TABLE technology_type
 (
