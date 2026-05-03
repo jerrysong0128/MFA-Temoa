@@ -653,26 +653,28 @@ CREATE TABLE demand
     notes     TEXT,
     PRIMARY KEY (region, period, commodity)
 );
-INSERT INTO "demand" VALUES('utopia',2020,'CEM',5.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2020,'RH',38.7,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2020,'RL',8.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2020,'TX',7.982,'PJ','');
-INSERT INTO "demand" VALUES('utopia',2030,'CEM',6.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2030,'RH',43.2,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2030,'RL',9.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2030,'TX',8.909,'PJ','');
-INSERT INTO "demand" VALUES('utopia',2040,'CEM',7.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2040,'RH',47.7,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2040,'RL',10.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2040,'TX',9.836,'PJ','');
-INSERT INTO "demand" VALUES('utopia',2050,'CEM',8.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2050,'RH',52.2,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2050,'RL',11.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2050,'TX',10.763,'PJ','');
-INSERT INTO "demand" VALUES('utopia',2060,'CEM',9.0,'Mt','linear growth baseline');
 INSERT INTO "demand" VALUES('utopia',2060,'RH',56.7,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2060,'RL',12.6,'PJ','');
 INSERT INTO "demand" VALUES('utopia',2060,'TX',11.69,'PJ','');
+
+INSERT INTO "demand" VALUES('utopia',2020,'CEM',9.63,'Mt','From GloBUS');
+INSERT INTO "demand" VALUES('utopia',2030,'CEM',10.43,'Mt','From GloBUS');
+INSERT INTO "demand" VALUES('utopia',2040,'CEM',11.28,'Mt','From GloBUS');
+INSERT INTO "demand" VALUES('utopia',2050,'CEM',12.12,'Mt','From GloBUS');
+INSERT INTO "demand" VALUES('utopia',2060,'CEM',13.06,'Mt','From GloBUS');
+
 
 CREATE TABLE demand_specific_distribution
 (
@@ -1292,10 +1294,10 @@ CREATE TABLE limit_emission
     notes     TEXT,
     PRIMARY KEY (region, period, emis_comm, operator)
 );
-INSERT INTO "limit_emission" VALUES('utopia',2030,'co2_cem','le',1.35,'Mt','linear tightening cap for cement CO2');
-INSERT INTO "limit_emission" VALUES('utopia',2040,'co2_cem','le',1.05,'Mt','linear tightening cap for cement CO2');
-INSERT INTO "limit_emission" VALUES('utopia',2050,'co2_cem','le',0.75,'Mt','linear tightening cap for cement CO2');
-INSERT INTO "limit_emission" VALUES('utopia',2060,'co2_cem','le',0.68,'Mt','linear tightening cap for cement CO2');
+INSERT INTO "limit_emission" VALUES('utopia',2030,'co2_cem','le',1.8,'Mt','linear tightening cap for cement CO2');
+INSERT INTO "limit_emission" VALUES('utopia',2040,'co2_cem','le',1.15,'Mt','linear tightening cap for cement CO2');
+INSERT INTO "limit_emission" VALUES('utopia',2050,'co2_cem','le',0.85,'Mt','linear tightening cap for cement CO2');
+INSERT INTO "limit_emission" VALUES('utopia',2060,'co2_cem','le',0.28,'Mt','linear tightening cap for cement CO2');
 
 CREATE TABLE limit_growth_capacity
 (

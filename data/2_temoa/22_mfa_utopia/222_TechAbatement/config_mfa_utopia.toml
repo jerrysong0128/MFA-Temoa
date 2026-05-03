@@ -10,7 +10,7 @@
 # Scenario Name (Mandatory)
 # This scenario name is used to label results within the output .sqlite file
 # (cannot contain "-" dash)
-scenario = "zulu"
+scenario = "2_TechAbatement"
 
 # Scenario Mode (Mandatory)
 # See documentation for explanations.  A standard single run is "perfect_foresight"
@@ -19,13 +19,13 @@ scenario = "zulu"
 scenario_mode = "perfect_foresight"
 
 # Input database (Mandatory)
-input_database = "tutorial_database.sqlite"
+input_database = "mfa_utopia_cement.sqlite"
 
 # Output file (Mandatory)
 # The output file must be an existing .sqlite file
 # For Perfect Foresight, the user may target the same input file or a separate /
 # copied sqlite file in a different location.  Myopic, MGA require that input_database = output_database
-output_database = "tutorial_database.sqlite"
+output_database = "mfa_utopia_cement.sqlite"
 
 # ------------------------------------
 #        DATABASE CONFIGURATION
@@ -182,7 +182,7 @@ weighting = "hull_expansion"  # use a convex hull expansion algorithm to weight 
 
 [myopic]
 view_depth = 2   # number of periods seen/analyzed per iteration
-step_size = 2    # number of periods to step by (must be <= view depth)
+step_size = 1    # number of periods to step by (must be <= view depth)
 # Evolving mode: if true, the evolution_script is called between myopic iterations
 # to update the database. The view depth may shorten near the end of the planning
 # horizon to ensure that all iterations are performed.
@@ -211,4 +211,4 @@ activity_labels = []
 
 [monte_carlo]
 # a path from the PROJECT ROOT to the settings file that contains the run data.
-run_settings = 'mc_settings.csv'
+run_settings = 'mc_settings_mfa_utpoia.csv'

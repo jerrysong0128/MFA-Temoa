@@ -7,5 +7,7 @@ output_files
 # Keep pre-run demand scenario outputs under version control
 !data/1_mfa/pre-run-demand/
 !data/1_mfa/pre-run-demand/*.csv
+*.sqlite-wal
+*.sqlite-shm
 
 data/2_temoa/23_temoa_Europe

@@ -10,7 +10,7 @@
 # Scenario Name (Mandatory)
 # This scenario name is used to label results within the output .sqlite file
 # (cannot contain "-" dash)
-scenario = "MFA_Utopia_Temoa"
+scenario = "3_TechCE"
 
 # Scenario Mode (Mandatory)
 # See documentation for explanations.  A standard single run is "perfect_foresight"
