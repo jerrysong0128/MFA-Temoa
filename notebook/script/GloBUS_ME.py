@@ -35,7 +35,7 @@ def GloBUS_cement_analysis(
     os.chdir(dir_path_GloBUS)
     warnings.filterwarnings("ignore", category=FutureWarning)
     warnings.filterwarnings("ignore", category=pd.errors.PerformanceWarning)
-    warnings.filterwarnings("ignore", category=pd.errors.SettingWithCopyWarning)
+    #warnings.filterwarnings("ignore", category=pd.errors.SettingWithCopyWarning)
 
     # Set general constants
     regions = 26        #26 IMAGE regions

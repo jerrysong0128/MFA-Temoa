@@ -19,13 +19,13 @@ scenario = "MFA_Utopia_Temoa"
 scenario_mode = "perfect_foresight"
 
 # Input database (Mandatory)
-input_database = "mfa_utopia.sqlite"
+input_database = "mfa_utopia_2060.sqlite"
 
 # Output file (Mandatory)
 # The output file must be an existing .sqlite file
 # For Perfect Foresight, the user may target the same input file or a separate /
 # copied sqlite file in a different location.  Myopic, MGA require that input_database = output_database
-output_database = "mfa_utopia.sqlite"
+output_database = "mfa_utopia_2060.sqlite"
 
 # ------------------------------------
 #        DATABASE CONFIGURATION
