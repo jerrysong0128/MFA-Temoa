@@ -11,7 +11,7 @@ def plot_temoa_production_pathways(
     emission_comm: str = "co2_cem",
     cap_region: Optional[str] = None,
     scenario_name: Optional[str] = None,
-    figsize: Tuple[float, float] = (12, 4.5),
+    figsize: Tuple[float, float] = (10, 4.5),
     title_fontsize: int = 14,
     label_fontsize: int = 13,
     tick_fontsize: int = 12,
