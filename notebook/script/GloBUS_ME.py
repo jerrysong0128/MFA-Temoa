@@ -92,26 +92,8 @@ def GloBUS_cement_analysis(
     sva_pc = sva_pc_2005 * inflation                                              # we use the inflation corrected SVA to adjust for the fact that IMAGE provides gdp/cap in 2005 US$
 
     # load material density data csv-files
-    # Preferred: dedicated cement-intensity file from extended workflow.
-    # Fallback: infer a teaching-friendly cement proxy from available concrete intensities in the submodule.
-    cement_file = Path('files_material_density/cement_materials_intensity_normal.csv')
-    if cement_file.exists():
-        building_materials = pd.read_csv(cement_file)
-    else:
-        res_materials = pd.read_csv('files_material_density/Building_materials.csv')
-        com_materials = pd.read_csv('files_material_density/materials_commercial.csv')
-
-        res_cement = res_materials[['Region', 'Building_type', 'concrete']].copy()
-        res_cement = res_cement.rename(columns={'concrete': 'cement'})
-        res_cement['Area_type'] = 'rural'
-        res_cement_urban = res_cement.copy()
-        res_cement_urban['Area_type'] = 'urban'
-
-        com_cement = com_materials[['Region', 'Building_type', 'concrete']].copy()
-        com_cement = com_cement.rename(columns={'concrete': 'cement'})
-        com_cement['Area_type'] = 'commercial'
-
-        building_materials = pd.concat([res_cement, res_cement_urban, com_cement], ignore_index=True)
+    building_materials = pd.read_csv('files_material_density/Building_materials.csv')
+    materials_commercial = pd.read_csv('files_material_density/materials_commercial.csv')
 
     # Load fitted regression parameters for comercial floor area estimate
     if flag_alpha == 0:
@@ -168,9 +150,9 @@ def GloBUS_cement_analysis(
     for year in range(1971,2061):
         for region in range(1,27):
             if flag_ExpDec == 0:
-                commercial_m2_cap[region][year] = alpha * math.exp(-beta * math.exp((-gamma/1000) * sva_pc[str(region)][year]))
+                commercial_m2_cap.loc[year, region] = alpha * math.exp(-beta * math.exp((-gamma/1000) * sva_pc.loc[year, str(region)]))
             else:
-                commercial_m2_cap[region][year] = max(0.542, alpha - beta * math.exp((-gamma/1000) * sva_pc[str(region)][year]))
+                commercial_m2_cap.loc[year, region] = max(0.542, alpha - beta * math.exp((-gamma/1000) * sva_pc.loc[year, str(region)]))
 
     # Subdivide the total across Offices, Retail+, Govt+ & Hotels+
     commercial_m2_cap_office = pd.DataFrame(index = range(1971,2061), columns = range(1,27))    # Offices
@@ -201,10 +183,10 @@ def GloBUS_cement_analysis(
             # Then use the ratio's to subdivide the total commercial floorspace into 4 categories      
             commercial_sum = office + retail + hotels + govern
 
-            commercial_m2_cap_office[region][year] = commercial_m2_cap[region][year] * (office/commercial_sum)
-            commercial_m2_cap_retail[region][year] = commercial_m2_cap[region][year] * (retail/commercial_sum)
-            commercial_m2_cap_hotels[region][year] = commercial_m2_cap[region][year] * (hotels/commercial_sum)
-            commercial_m2_cap_govern[region][year] = commercial_m2_cap[region][year] * (govern/commercial_sum)
+            commercial_m2_cap_office.loc[year, region] = commercial_m2_cap.loc[year, region] * (office/commercial_sum)
+            commercial_m2_cap_retail.loc[year, region] = commercial_m2_cap.loc[year, region] * (retail/commercial_sum)
+            commercial_m2_cap_hotels.loc[year, region] = commercial_m2_cap.loc[year, region] * (hotels/commercial_sum)
+            commercial_m2_cap_govern.loc[year, region] = commercial_m2_cap.loc[year, region] * (govern/commercial_sum)
 
 
     # %%
@@ -275,16 +257,16 @@ def GloBUS_cement_analysis(
     for region in range(1,regions+1):
         for year in range(1820,1971):
             # MAX of 1) the MINimum value & 2) the calculated value
-            floorspace_urb_1820_1970[region][year] = max(minimum_urb_fs, floorspace_urb[region][1971] * ((100-floorspace_urb_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
-            floorspace_rur_1820_1970[region][year] = max(minimum_rur_fs, floorspace_rur[region][1971] * ((100-floorspace_rur_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
-            commercial_m2_cap_office_1820_1970[region][year] = max(minimum_com_office, commercial_m2_cap_office[region][1971] * ((100-commercial_m2_cap_office_trend_global)/100)**(1971-year))  # single global value for average annual Decrease  
-            commercial_m2_cap_retail_1820_1970[region][year] = max(minimum_com_retail, commercial_m2_cap_retail[region][1971] * ((100-commercial_m2_cap_retail_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
-            commercial_m2_cap_hotels_1820_1970[region][year] = max(minimum_com_hotels, commercial_m2_cap_hotels[region][1971] * ((100-commercial_m2_cap_hotels_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
-            commercial_m2_cap_govern_1820_1970[region][year] = max(minimum_com_govern, commercial_m2_cap_govern[region][1971] * ((100-commercial_m2_cap_govern_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
+            floorspace_urb_1820_1970.loc[year, region] = max(minimum_urb_fs, floorspace_urb.loc[1971, region] * ((100-floorspace_urb_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
+            floorspace_rur_1820_1970.loc[year, region] = max(minimum_rur_fs, floorspace_rur.loc[1971, region] * ((100-floorspace_rur_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
+            commercial_m2_cap_office_1820_1970.loc[year, region] = max(minimum_com_office, commercial_m2_cap_office.loc[1971, region] * ((100-commercial_m2_cap_office_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
+            commercial_m2_cap_retail_1820_1970.loc[year, region] = max(minimum_com_retail, commercial_m2_cap_retail.loc[1971, region] * ((100-commercial_m2_cap_retail_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
+            commercial_m2_cap_hotels_1820_1970.loc[year, region] = max(minimum_com_hotels, commercial_m2_cap_hotels.loc[1971, region] * ((100-commercial_m2_cap_hotels_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
+            commercial_m2_cap_govern_1820_1970.loc[year, region] = max(minimum_com_govern, commercial_m2_cap_govern.loc[1971, region] * ((100-commercial_m2_cap_govern_trend_global)/100)**(1971-year))  # single global value for average annual Decrease
             # MIN of 1) the MAXimum value & 2) the calculated value        
-            rurpop_1820_1970[str(region)][year] = min(maximum_rurpop, rurpop[str(region)][1970] * ((100 + rurpop_trend_by_region[region - 1])/100)**(1970 - year))  # average annual INcrease by region
+            rurpop_1820_1970.loc[year, str(region)] = min(maximum_rurpop, rurpop.loc[1970, str(region)] * ((100 + rurpop_trend_by_region[region - 1])/100)**(1970 - year))  # average annual INcrease by region
             # just add the tail to the population (no min/max & trend is pre-calculated in hist_pop)        
-            pop_1820_1970[str(region)][year] = hist_pop[str(region)][year] * pop[str(region)][1970]
+            pop_1820_1970.loc[year, str(region)] = hist_pop.loc[year, str(region)] * pop.loc[1970, str(region)]
 
     urbpop_1820_1970 = 1 - rurpop_1820_1970
 
@@ -302,15 +284,15 @@ def GloBUS_cement_analysis(
     for region in range(1,27):
         for time in range(1721,1820):
             #                                                        MAX(0,...) Because of floating point deviations, leading to negative stock in some cases
-            floorspace_urb_1721_1820[int(region)][time]            = max(0.0, floorspace_urb_1820_1970[int(region)][1820] - (floorspace_urb_1820_1970[int(region)][1820]/100)*(1820-time))
-            floorspace_rur_1721_1820[int(region)][time]            = max(0.0, floorspace_rur_1820_1970[int(region)][1820] - (floorspace_rur_1820_1970[int(region)][1820]/100)*(1820-time))
-            rurpop_1721_1820[str(region)][time]                    = max(0.0, rurpop_1820_1970[str(region)][1820] - (rurpop_1820_1970[str(region)][1820]/100)*(1820-time))
-            urbpop_1721_1820[str(region)][time]                    = max(0.0, urbpop_1820_1970[str(region)][1820] - (urbpop_1820_1970[str(region)][1820]/100)*(1820-time))
-            pop_1721_1820[str(region)][time]                       = max(0.0, pop_1820_1970[str(region)][1820] - (pop_1820_1970[str(region)][1820]/100)*(1820-time))
-            commercial_m2_cap_office_1721_1820[int(region)][time]  = max(0.0, commercial_m2_cap_office_1820_1970[region][1820] - (commercial_m2_cap_office_1820_1970[region][1820]/100)*(1820-time))
-            commercial_m2_cap_retail_1721_1820[int(region)][time]  = max(0.0, commercial_m2_cap_retail_1820_1970[region][1820] - (commercial_m2_cap_retail_1820_1970[region][1820]/100)*(1820-time))
-            commercial_m2_cap_hotels_1721_1820[int(region)][time]  = max(0.0, commercial_m2_cap_hotels_1820_1970[region][1820] - (commercial_m2_cap_hotels_1820_1970[region][1820]/100)*(1820-time))
-            commercial_m2_cap_govern_1721_1820[int(region)][time]  = max(0.0, commercial_m2_cap_govern_1820_1970[region][1820] - (commercial_m2_cap_govern_1820_1970[region][1820]/100)*(1820-time))
+            floorspace_urb_1721_1820.loc[time, region]            = max(0.0, floorspace_urb_1820_1970.loc[1820, region] - (floorspace_urb_1820_1970.loc[1820, region]/100)*(1820-time))
+            floorspace_rur_1721_1820.loc[time, region]            = max(0.0, floorspace_rur_1820_1970.loc[1820, region] - (floorspace_rur_1820_1970.loc[1820, region]/100)*(1820-time))
+            rurpop_1721_1820.loc[time, str(region)]               = max(0.0, rurpop_1820_1970.loc[1820, str(region)] - (rurpop_1820_1970.loc[1820, str(region)]/100)*(1820-time))
+            urbpop_1721_1820.loc[time, str(region)]               = max(0.0, urbpop_1820_1970.loc[1820, str(region)] - (urbpop_1820_1970.loc[1820, str(region)]/100)*(1820-time))
+            pop_1721_1820.loc[time, str(region)]                  = max(0.0, pop_1820_1970.loc[1820, str(region)] - (pop_1820_1970.loc[1820, str(region)]/100)*(1820-time))
+            commercial_m2_cap_office_1721_1820.loc[time, region]  = max(0.0, commercial_m2_cap_office_1820_1970.loc[1820, region] - (commercial_m2_cap_office_1820_1970.loc[1820, region]/100)*(1820-time))
+            commercial_m2_cap_retail_1721_1820.loc[time, region]  = max(0.0, commercial_m2_cap_retail_1820_1970.loc[1820, region] - (commercial_m2_cap_retail_1820_1970.loc[1820, region]/100)*(1820-time))
+            commercial_m2_cap_hotels_1721_1820.loc[time, region]  = max(0.0, commercial_m2_cap_hotels_1820_1970.loc[1820, region] - (commercial_m2_cap_hotels_1820_1970.loc[1820, region]/100)*(1820-time))
+            commercial_m2_cap_govern_1721_1820.loc[time, region]  = max(0.0, commercial_m2_cap_govern_1820_1970.loc[1820, region] - (commercial_m2_cap_govern_1820_1970.loc[1820, region]/100)*(1820-time))
 
     # combine historic with IMAGE data here
     rurpop_tail                     = pd.concat([rurpop_1820_1970, rurpop2], axis=0)
@@ -603,7 +585,7 @@ def GloBUS_cement_analysis(
     # apply lifetime extention
     if lifetime_extention == 'HE':
         scale_multiplier = lifetime_extention_rate
-        lifetime_extention_func(shape_comm, scale_multiplier)
+        lifetime_extention_func(scale_comm, scale_multiplier)
         lifetime_extention_func(scale_det_rur, scale_multiplier)
         lifetime_extention_func(scale_sem_rur, scale_multiplier)
         lifetime_extention_func(scale_app_rur, scale_multiplier)
@@ -701,31 +683,29 @@ def GloBUS_cement_analysis(
 
     # %%
     #%% MATERIAL INTENSITY RESTRUCTURING (to become consistent with floor area dataset)-----------------------------------------------------------
-    # separate different materials
-    building_materials_cement = building_materials[['Region','Area_type','Building_type','cement']]
+    # Use the original concrete intensity as the cement proxy for this teaching workflow.
+    building_materials_cement = building_materials[['Region','Building_type','concrete']].copy()
+    materials_commercial_cement = materials_commercial[['Region','Building_type','concrete']].copy()
 
     # generate time-series data structure
     for i in range(1721,2061):
-        building_materials_cement[i] = building_materials_cement['cement']
+        building_materials_cement[i] = building_materials_cement['concrete']
+        materials_commercial_cement[i] = materials_commercial_cement['concrete']
 
 
-    building_materials_cement = building_materials_cement.drop(['cement'],axis = 1)
+    building_materials_cement = building_materials_cement.drop(['concrete'],axis = 1)
+    materials_commercial_cement = materials_commercial_cement.drop(['concrete'],axis = 1)
 
     # cement intensity
-    material_cement_urb_det = building_materials_cement.loc[(building_materials_cement['Building_type']=='Detached')&(building_materials_cement['Area_type']=='urban')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_det_rur.index)
-    material_cement_urb_sem = building_materials_cement.loc[(building_materials_cement['Building_type']=='Semi-detached')&(building_materials_cement['Area_type']=='urban')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_sem_rur.index)
-    material_cement_urb_app = building_materials_cement.loc[(building_materials_cement['Building_type']=='Appartments')&(building_materials_cement['Area_type']=='urban')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_app_rur.index)
-    material_cement_urb_hig = building_materials_cement.loc[(building_materials_cement['Building_type']=='High-rise')&(building_materials_cement['Area_type']=='urban')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_hig_rur.index)
+    material_cement_det = building_materials_cement.loc[(building_materials_cement['Building_type']=='Detached')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(m2_det_rur.index)
+    material_cement_sem = building_materials_cement.loc[(building_materials_cement['Building_type']=='Semi-detached')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(m2_sem_rur.index)
+    material_cement_app = building_materials_cement.loc[(building_materials_cement['Building_type']=='Appartments')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(m2_app_rur.index)
+    material_cement_hig = building_materials_cement.loc[(building_materials_cement['Building_type']=='High-rise')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(m2_hig_rur.index)
 
-    material_cement_rur_det = building_materials_cement.loc[(building_materials_cement['Building_type']=='Detached')&(building_materials_cement['Area_type']=='rural')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_det_rur.index)
-    material_cement_rur_sem = building_materials_cement.loc[(building_materials_cement['Building_type']=='Semi-detached')&(building_materials_cement['Area_type']=='rural')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_sem_rur.index)
-    material_cement_rur_app = building_materials_cement.loc[(building_materials_cement['Building_type']=='Appartments')&(building_materials_cement['Area_type']=='rural')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_app_rur.index)
-    material_cement_rur_hig = building_materials_cement.loc[(building_materials_cement['Building_type']=='High-rise')&(building_materials_cement['Area_type']=='rural')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(m2_hig_rur.index)
-
-    materials_cement_office = building_materials_cement.loc[(building_materials_cement['Building_type']=='Offices')&(building_materials_cement['Area_type']=='commercial')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(commercial_m2_office.index)
-    materials_cement_retail = building_materials_cement.loc[(building_materials_cement['Building_type']=='Retail+')&(building_materials_cement['Area_type']=='commercial')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(commercial_m2_retail.index)
-    materials_cement_hotels = building_materials_cement.loc[(building_materials_cement['Building_type']=='Hotels+')&(building_materials_cement['Area_type']=='commercial')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(commercial_m2_hotels.index)
-    materials_cement_govern = building_materials_cement.loc[(building_materials_cement['Building_type']=='Govt+')&(building_materials_cement['Area_type']=='commercial')].set_index('Region').drop(['Building_type','Area_type'],axis = 1).T.set_index(commercial_m2_govern.index)
+    materials_cement_office = materials_commercial_cement.loc[(materials_commercial_cement['Building_type']=='Offices')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(commercial_m2_office.index)
+    materials_cement_retail = materials_commercial_cement.loc[(materials_commercial_cement['Building_type']=='Retail+')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(commercial_m2_retail.index)
+    materials_cement_hotels = materials_commercial_cement.loc[(materials_commercial_cement['Building_type']=='Hotels+')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(commercial_m2_hotels.index)
+    materials_cement_govern = materials_commercial_cement.loc[(materials_commercial_cement['Building_type']=='Govt+')].set_index('Region').drop(['Building_type'],axis = 1).T.set_index(commercial_m2_govern.index)
 
 
     # %%
@@ -749,7 +729,7 @@ def GloBUS_cement_analysis(
     MI_factor_list = np.concatenate((np.ones(299), MI_factor_list_20to60))
 
     # Repeat MI_factor_list for 26 regions and reshape it to match the shape of the DataFrame
-    MI_factor_df = pd.DataFrame(np.tile(MI_factor_list, (26, 1)).T, index=material_cement_rur_det.index)
+    MI_factor_df = pd.DataFrame(np.tile(MI_factor_list, (26, 1)).T, index=material_cement_det.index)
 
     # Create a dictionary mapping the old column names to the new ones
     column_mapping = {old: new for old, new in zip(MI_factor_df.columns, range(1, 27))}
@@ -758,15 +738,10 @@ def GloBUS_cement_analysis(
     MI_factor_df = MI_factor_df.rename(columns=column_mapping)
 
     # modify the material intensity factor by the MI_factor
-    material_cement_rur_det = material_cement_rur_det.multiply(MI_factor_df)
-    material_cement_rur_sem = material_cement_rur_sem.multiply(MI_factor_df)
-    material_cement_rur_app = material_cement_rur_app.multiply(MI_factor_df)
-    material_cement_rur_hig = material_cement_rur_hig.multiply(MI_factor_df)
-
-    material_cement_urb_det = material_cement_urb_det.multiply(MI_factor_df)
-    material_cement_urb_sem = material_cement_urb_sem.multiply(MI_factor_df)
-    material_cement_urb_app = material_cement_urb_app.multiply(MI_factor_df)
-    material_cement_urb_hig = material_cement_urb_hig.multiply(MI_factor_df)
+    material_cement_det = material_cement_det.multiply(MI_factor_df)
+    material_cement_sem = material_cement_sem.multiply(MI_factor_df)
+    material_cement_app = material_cement_app.multiply(MI_factor_df)
+    material_cement_hig = material_cement_hig.multiply(MI_factor_df)
 
     materials_cement_office = materials_cement_office.multiply(MI_factor_df)
     materials_cement_retail = materials_cement_retail.multiply(MI_factor_df)
@@ -774,15 +749,15 @@ def GloBUS_cement_analysis(
     materials_cement_govern = materials_cement_govern.multiply(MI_factor_df)
 
     # produce the material inflow by the modified material intensity factor
-    kg_det_rur_cement_i = m2_det_rur_i.multiply(material_cement_rur_det)
-    kg_sem_rur_cement_i = m2_sem_rur_i.multiply(material_cement_rur_sem)
-    kg_app_rur_cement_i = m2_app_rur_i.multiply(material_cement_rur_app)
-    kg_hig_rur_cement_i = m2_hig_rur_i.multiply(material_cement_rur_hig)
+    kg_det_rur_cement_i = m2_det_rur_i.multiply(material_cement_det)
+    kg_sem_rur_cement_i = m2_sem_rur_i.multiply(material_cement_sem)
+    kg_app_rur_cement_i = m2_app_rur_i.multiply(material_cement_app)
+    kg_hig_rur_cement_i = m2_hig_rur_i.multiply(material_cement_hig)
 
-    kg_det_urb_cement_i = m2_det_urb_i.multiply(material_cement_urb_det)
-    kg_sem_urb_cement_i = m2_sem_urb_i.multiply(material_cement_urb_sem)
-    kg_app_urb_cement_i = m2_app_urb_i.multiply(material_cement_urb_app)
-    kg_hig_urb_cement_i = m2_hig_urb_i.multiply(material_cement_urb_hig)
+    kg_det_urb_cement_i = m2_det_urb_i.multiply(material_cement_det)
+    kg_sem_urb_cement_i = m2_sem_urb_i.multiply(material_cement_sem)
+    kg_app_urb_cement_i = m2_app_urb_i.multiply(material_cement_app)
+    kg_hig_urb_cement_i = m2_hig_urb_i.multiply(material_cement_hig)
 
     kg_office_cement_i = m2_office_i.multiply(materials_cement_office)
     kg_retail_cement_i = m2_retail_i.multiply(materials_cement_retail)
@@ -806,15 +781,15 @@ def GloBUS_cement_analysis(
         return result.T
 
     # cement outflow
-    kg_det_rur_cement_o = material_outflow(m2_det_rur_oc, material_cement_rur_det)
-    kg_sem_rur_cement_o = material_outflow(m2_sem_rur_oc, material_cement_rur_sem)
-    kg_app_rur_cement_o = material_outflow(m2_app_rur_oc, material_cement_rur_app)
-    kg_hig_rur_cement_o = material_outflow(m2_hig_rur_oc, material_cement_rur_hig)
+    kg_det_rur_cement_o = material_outflow(m2_det_rur_oc, material_cement_det)
+    kg_sem_rur_cement_o = material_outflow(m2_sem_rur_oc, material_cement_sem)
+    kg_app_rur_cement_o = material_outflow(m2_app_rur_oc, material_cement_app)
+    kg_hig_rur_cement_o = material_outflow(m2_hig_rur_oc, material_cement_hig)
 
-    kg_det_urb_cement_o = material_outflow(m2_det_urb_oc, material_cement_urb_det)
-    kg_sem_urb_cement_o = material_outflow(m2_sem_urb_oc, material_cement_urb_sem)
-    kg_app_urb_cement_o = material_outflow(m2_app_urb_oc, material_cement_urb_app)
-    kg_hig_urb_cement_o = material_outflow(m2_hig_urb_oc, material_cement_urb_hig)
+    kg_det_urb_cement_o = material_outflow(m2_det_urb_oc, material_cement_det)
+    kg_sem_urb_cement_o = material_outflow(m2_sem_urb_oc, material_cement_sem)
+    kg_app_urb_cement_o = material_outflow(m2_app_urb_oc, material_cement_app)
+    kg_hig_urb_cement_o = material_outflow(m2_hig_urb_oc, material_cement_hig)
 
     kg_office_cement_o = material_outflow(m2_office_oc, materials_cement_office)
     kg_retail_cement_o = material_outflow(m2_retail_oc, materials_cement_retail)
@@ -911,6 +886,8 @@ def GloBUS_cement_analysis(
         + kg_det_urb_cement_i + kg_sem_urb_cement_i + kg_app_urb_cement_i + kg_hig_urb_cement_i
         + kg_office_cement_i + kg_retail_cement_i + kg_hotels_cement_i + kg_govern_cement_i
     )
+    if cement_inflow_total.empty or cement_inflow_total.isna().any().any():
+        raise ValueError("cement_inflow_total contains missing values; check material intensity index/column alignment.")
     cement_inflow_total.name = "cement_inflow_total"
     cement_inflow_path = output_dir / f"cement_demand_inflow_{scenario_code}.csv"
     cement_inflow_total.to_csv(cement_inflow_path)
