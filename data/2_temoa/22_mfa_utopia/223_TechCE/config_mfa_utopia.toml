@@ -90,7 +90,7 @@ save_storage_levels = true
 save_lp_file = false
 
 # graphviz dot file and svg for network visualization (requires graphviz to be installed separately)
-graphviz_output = false
+graphviz_output = true
 
 # Optional output filtering thresholds (set to 0 to disable per category)
 # Precedence is: TOML value > internal defaults.
